@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="exam.ism.controllers.InscriptionController">
+   <children>
+      <BorderPane onMouseClicked="#handleInRelease" prefHeight="400.0" prefWidth="600.0">
+         <top>
+            <AnchorPane prefHeight="279.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tblvEtudiant" layoutY="79.0" onMouseClicked="#handleListerClasses" prefHeight="200.0" prefWidth="462.0">
+                    <columns>
+                      <TableColumn fx:id="tblcID" prefWidth="36.0" text="ID" />
+                      <TableColumn fx:id="tblcMatricule" prefWidth="128.0" text="MATRICULE" />
+                        <TableColumn fx:id="tblcNomComplet" prefWidth="141.0" text="NOM COMPLET" />
+                        <TableColumn fx:id="tblcTuteur" prefWidth="156.0" text="TUTEUR" />
+                    </columns>
+                  </TableView>
+                  <TableView fx:id="tblvClasse" layoutX="461.0" layoutY="79.0" prefHeight="200.0" prefWidth="139.0">
+                    <columns>
+                      <TableColumn fx:id="tblcLibelle" prefWidth="138.0" text="CLASSE" />
+                    </columns>
+                  </TableView>
+                  <ComboBox fx:id="cbAnnne" layoutX="52.0" layoutY="17.0" onAction="#handleFiltrerByAnne" prefWidth="150.0" promptText="annee" />
+                  <ComboBox fx:id="cbClasse" layoutX="386.0" layoutY="17.0" onAction="#handleFiltrerByClasse" prefWidth="150.0" promptText="classe" />
+               </children>
+            </AnchorPane>
+         </top>
+         <bottom>
+            <AnchorPane prefHeight="198.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="inMatricule" layoutX="36.0" layoutY="22.0" prefHeight="25.0" prefWidth="333.0" promptText="Matricule" />
+                  <TextField fx:id="inNomComplet" layoutX="36.0" layoutY="68.0" prefHeight="25.0" prefWidth="333.0" promptText="Nom complet de l'etudiant" />
+                  <TextField fx:id="inTuteur" layoutX="36.0" layoutY="121.0" prefHeight="25.0" prefWidth="333.0" promptText="tuteur" />
+                  <Button fx:id="btnInscrire" layoutX="406.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleInscrire" prefHeight="25.0" prefWidth="173.0" text="INSCRIRE" />
+                  <ComboBox fx:id="cbNonClasse" layoutX="417.0" layoutY="22.0" prefWidth="150.0" promptText="Classes" />
+               </children>
+            </AnchorPane>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

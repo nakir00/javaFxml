@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="exam.ism.controllers.RPHomeController">
+   <children>
+      <BorderPane prefHeight="545.0" prefWidth="699.0">
+         <left>
+            <AnchorPane prefHeight="545.0" prefWidth="139.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="96.0" fitWidth="97.0" layoutX="21.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../px/LOGO-ISM-SENEGAL-WIKI%20(1).jpg" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="13.0" layoutY="193.0" mnemonicParsing="false" onAction="#handleLoadViewClasse" prefHeight="34.0" prefWidth="114.0" text="classe" />
+                  <Button layoutX="13.0" layoutY="248.0" mnemonicParsing="false" onAction="#handleLoadViewProfesseur" prefHeight="34.0" prefWidth="114.0" text="professeur" />
+                  <Button layoutX="13.0" layoutY="497.0" mnemonicParsing="false" onAction="#handleDeconnexion" prefHeight="34.0" prefWidth="114.0" text="Deconnexion" />
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane fx:id="ancre" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
