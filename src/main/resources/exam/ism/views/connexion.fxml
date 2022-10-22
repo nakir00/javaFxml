@@ -27,7 +27,7 @@
                      </font>
                   </Text>
                   <Button cancelButton="true" layoutX="127.0" layoutY="241.0" mnemonicParsing="false" onAction="#handleAnnuler" prefHeight="30.0" prefWidth="99.0" text="annuler" />
-                  <Button layoutX="346.0" layoutY="241.0" mnemonicParsing="false" onAction="#handleConnexion" prefHeight="30.0" prefWidth="138.0" text="Se connecter" />
+                  <Button fx:id="btnSeConnecter" disable="true" layoutX="346.0" layoutY="241.0" mnemonicParsing="false" onAction="#handleConnexion" prefHeight="30.0" prefWidth="138.0" text="Se connecter" />
                   <TextField fx:id="inLogin" layoutX="162.0" layoutY="105.0" prefHeight="26.0" prefWidth="301.0" />
                   <PasswordField fx:id="inPwd" layoutX="162.0" layoutY="170.0" prefHeight="26.0" prefWidth="303.0" />
                   <Text fx:id="txtError" layoutX="135.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="vos coordonnées ne sont pas valides">
@@ -35,6 +35,8 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
+                  <Text fx:id="txtLoginError" layoutX="165.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="le champs doit etre rempli" />
+                  <Text fx:id="txtPwdError" layoutX="165.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="le champs doit etre rempli" />
                </children>
             </AnchorPane>
          </center>

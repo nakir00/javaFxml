@@ -34,7 +34,8 @@
                      </font>
                   </Text>
                   <TextField fx:id="inLibelle" layoutX="153.0" layoutY="14.0" prefHeight="36.0" prefWidth="295.0" />
-                  <Button layoutX="493.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleCreerClasse" text="Créer" />
+                  <Button fx:id="btnCreer" layoutX="493.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleCreerClasse" text="Créer" />
+                  <Text fx:id="txtError" layoutX="153.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ce champs doit etre rempli" />
                </children>
             </AnchorPane>
          </top>

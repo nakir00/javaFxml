@@ -11,10 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -78,6 +80,10 @@ public class ProfesseurController  implements Initializable{
         
         Professeur professeur=Fabrique.giveMe().ajouterProfesseur(new Professeur(nci, nomComplet, grade));
         obProfs.add(professeur);
+        Alert alert=new Alert(AlertType.INFORMATION);
+         alert.setTitle("examen Inscription");
+         alert.setContentText("professeur cree avec success");
+         alert.showAndWait();
     }
 
     @Override
@@ -109,6 +115,10 @@ public class ProfesseurController  implements Initializable{
         loadClasses();
         notAffected.remove(classe);
         cbNon.setItems(notAffected);
+        Alert alert=new Alert(AlertType.INFORMATION);
+         alert.setTitle("examen Inscription");
+         alert.setContentText("classe affectée avec success \n veuillez cliquer sur le professeur pour voir la mise a jour");
+         alert.showAndWait();
     }
 
     void loadClasses(){

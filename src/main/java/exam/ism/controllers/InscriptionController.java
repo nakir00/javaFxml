@@ -11,11 +11,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -91,15 +93,21 @@ public class InscriptionController implements Initializable {
     void handleInscrire(ActionEvent event) {
         Etudiant etudiant;
         Classe classe=cbNonClasse.getSelectionModel().getSelectedItem();
+        Alert alert=new Alert(AlertType.INFORMATION);
+        alert.setTitle("examen Inscription");
         if(!inMatricule.isDisabled()){
             etudiant=new Etudiant(inMatricule.getText(), inNomComplet.getText(), inTuteur.getText());
             etudiant=Fabrique.giveMe().ajouterEtudiant(etudiant);
             obEtudiants.add(etudiant);
             tblvEtudiant.setItems(obEtudiants);
+         
+            alert.setContentText("etudiant cree et inscrit avec success");
+        
         }else{
             etudiant=tblvEtudiant.getSelectionModel().getSelectedItem();
+            alert.setContentText("etudiant reinscrit avec success");
         }
-
+        alert.showAndWait();
         Fabrique.giveMe().inscription(etudiant, classe);
         obNon.remove(classe);
         cbNonClasse.setItems(obNon);

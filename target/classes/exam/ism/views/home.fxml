@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="exam.ism.controllers.ACHomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="exam.ism.controllers.HomeController">
    <children>
       <BorderPane prefHeight="545.0" prefWidth="699.0">
          <left>
@@ -17,9 +17,10 @@
                         <Image url="@../px/LOGO-ISM-SENEGAL-WIKI%20(1).jpg" />
                      </image>
                   </ImageView>
-                  <Button layoutX="13.0" layoutY="193.0" mnemonicParsing="false" onAction="#handleLoadViewInscription" prefHeight="34.0" prefWidth="114.0" text="Inscription" />
-                  <Button layoutX="13.0" layoutY="248.0" mnemonicParsing="false" onAction="#handleLoadViewEtudiant" prefHeight="34.0" prefWidth="114.0" text="Etudiant" />
+                  <Button fx:id="btnInscription" disable="true" layoutX="13.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleLoadViewInscription" prefHeight="34.0" prefWidth="114.0" text="Inscription" visible="false" />
+                  <Button fx:id="btnClasse" disable="true" layoutX="13.0" layoutY="208.0" mnemonicParsing="false" onAction="#handleLoadViewClasse" prefHeight="34.0" prefWidth="114.0" text="classe" visible="false" />
                   <Button layoutX="13.0" layoutY="497.0" mnemonicParsing="false" onAction="#handleDeconnexion" prefHeight="34.0" prefWidth="114.0" text="Deconnexion" />
+                  <Button fx:id="btnProfesseur" disable="true" layoutX="13.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleLoadViewProfesseur" prefHeight="34.0" prefWidth="114.0" text="professeur" visible="false" />
                </children>
             </AnchorPane>
          </left>
