@@ -6,12 +6,14 @@ import java.util.ResourceBundle;
 import exam.ism.core.Fabrique;
 import exam.ism.entities.Classe;
 import exam.ism.entities.Professeur;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -19,8 +21,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 public class ProfesseurController  implements Initializable{
+
+    @FXML
+    private Button btnAffecter;
+
+    @FXML
+    private Button btnAjouter;
 
     @FXML
     private ComboBox<Classe> cbNon;
@@ -59,16 +68,29 @@ public class ProfesseurController  implements Initializable{
     @FXML
     private TableView<Professeur> tblvProf;
 
+    @FXML
+    private Text txtErrorClasse;
+
+    @FXML
+    private Text txtErrorGrade;
+
+    @FXML
+    private Text txtErrorNci;
+
+    @FXML
+    private Text txtErrorNom;
+
+    @FXML
+    private Text txtErrorProf;
+
     private ObservableList obProfs= FXCollections.observableList(Fabrique.giveMe().listerProfesseurs());
 
     private ObservableList obClasses, notAffected;
 
     private Professeur currentProf;
 
-
-
-    
-    //ObservableList selectedCells = tableView.getSelectionModel().getSelectedCells();
+    SimpleBooleanProperty smpl=new SimpleBooleanProperty(true);
+    SimpleBooleanProperty spl=new SimpleBooleanProperty(true);
 
     
 
@@ -88,6 +110,10 @@ public class ProfesseurController  implements Initializable{
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        txtErrorNci.setVisible(false);
+        txtErrorNom.setVisible(false);
+        txtErrorGrade.setVisible(false);
+        txtErrorClasse.setVisible(false);
         // TODO Auto-generated method stub
         tblcId.setCellValueFactory(new PropertyValueFactory<>("id"));
         tblcNci.setCellValueFactory(new PropertyValueFactory<>("nci"));
@@ -97,6 +123,58 @@ public class ProfesseurController  implements Initializable{
         tblcLibelle.setCellValueFactory(new PropertyValueFactory<>("libelle"));
         tblvClasses.setItems(obClasses);
         cbNon.setItems(notAffected);
+
+        inNci.textProperty().addListener((obv,old,newV)->{
+            if(newV.isEmpty()){
+                txtErrorNci.setVisible(true);
+                smpl.set(true);
+                
+            }else{
+                smpl.set((inNom.getText().isEmpty())||(inGrade.getText().isEmpty()));
+                txtErrorNci.setVisible(false); 
+            }
+        });
+
+        inNom.textProperty().addListener((obv,old,newV)->{
+            if(newV.isEmpty()){
+                txtErrorNom.setVisible(true);
+                smpl.set(true);
+            }else{
+                smpl.set((inNci.getText().isEmpty())||(inGrade.getText().isEmpty()));
+                txtErrorNom.setVisible(false); 
+            }
+        });
+        inGrade.textProperty().addListener((obv,old,newV)->{
+            if(newV.isEmpty()){
+                txtErrorGrade.setVisible(true);
+                smpl.set(true);
+            }else{
+                smpl.set((inNom.getText().isEmpty())||(inNci.getText().isEmpty()));
+                txtErrorGrade.setVisible(false); 
+            }
+        });
+
+        cbNon.valueProperty().addListener((obv,old,newV)->{
+            if(newV==null){
+                txtErrorClasse.setVisible(true);
+            }else{
+                spl.set((tblvProf.getSelectionModel().isEmpty()));
+                txtErrorClasse.setVisible(false); 
+            }
+        });
+        
+        inSelectedProf.textProperty().addListener((obv,old,newV)->{
+            if(newV.isEmpty()){
+                txtErrorProf.setVisible(true);
+                smpl.set(true);
+            }else{
+                spl.set((cbNon.getSelectionModel().isEmpty()));
+                txtErrorProf.setVisible(false); 
+            }
+        });
+
+        btnAjouter.disableProperty().bind(smpl);
+        btnAffecter.disableProperty().bind(spl);
     }
 
     @FXML

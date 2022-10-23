@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="exam.ism.controllers.InscriptionController">
    <children>
@@ -40,6 +41,10 @@
                   <TextField fx:id="inTuteur" layoutX="36.0" layoutY="121.0" prefHeight="25.0" prefWidth="333.0" promptText="tuteur" />
                   <Button fx:id="btnInscrire" layoutX="406.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleInscrire" prefHeight="25.0" prefWidth="173.0" text="INSCRIRE" />
                   <ComboBox fx:id="cbNonClasse" layoutX="417.0" layoutY="22.0" prefWidth="150.0" promptText="Classes" />
+                  <Text fx:id="txtMatError" layoutX="103.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="veuillez remplir ce champs" />
+                  <Text fx:id="txtNomError" layoutX="103.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="veuillez remplir ce champs" />
+                  <Text fx:id="txtTuteurError" layoutX="103.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="veuillez remplir ce champs" />
+                  <Text fx:id="txtcbClassesError" layoutX="421.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="veuillez choisir une classe" />
                </children>
             </AnchorPane>
          </bottom>

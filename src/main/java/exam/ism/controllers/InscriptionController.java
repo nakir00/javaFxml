@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import exam.ism.core.Fabrique;
 import exam.ism.entities.Classe;
 import exam.ism.entities.Etudiant;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 public class InscriptionController implements Initializable {
 
@@ -65,6 +67,18 @@ public class InscriptionController implements Initializable {
     @FXML
     private TableView<Etudiant> tblvEtudiant;
 
+    @FXML
+    private Text txtMatError;
+
+    @FXML
+    private Text txtNomError;
+
+    @FXML
+    private Text txtTuteurError;
+
+    @FXML
+    private Text txtcbClassesError;
+
     private ObservableList obAnnee=FXCollections.observableList(Fabrique.giveMe().listerAnnee());
 
     private ObservableList obEtudiants=FXCollections.observableList(Fabrique.giveMe().listerEtudiant((int)(obAnnee.get(0))));
@@ -72,6 +86,9 @@ public class InscriptionController implements Initializable {
     private ObservableList obClassesAll=FXCollections.observableList(Fabrique.giveMe().ListerClasses());
 
     private ObservableList obClasses,obNon;
+
+
+    SimpleBooleanProperty smpl=new SimpleBooleanProperty(true);
 
     @FXML
     void handleListerClasses(MouseEvent event) {
@@ -118,6 +135,10 @@ public class InscriptionController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO Auto-generated method stub
+        txtMatError.setVisible(false);
+        txtNomError.setVisible(false);
+        txtTuteurError.setVisible(false);
+        txtcbClassesError.setVisible(false);
         tblcID.setCellValueFactory(new PropertyValueFactory<>("id"));
         tblcMatricule.setCellValueFactory(new PropertyValueFactory<>("matricule"));
         tblcNomComplet.setCellValueFactory(new PropertyValueFactory<>("nomComplet"));
@@ -132,15 +153,58 @@ public class InscriptionController implements Initializable {
         cbAnnne.setItems(obAnnee);
         cbAnnne.setValue((int)(obAnnee.get(0)));
 
+        cbNonClasse.valueProperty().addListener((obv,old,newV)->{
+            if(newV==null){
+                txtcbClassesError.setVisible(true);
+                smpl.set(true);
+            }else{
+                smpl.set((inMatricule.getText().isEmpty())||(inNomComplet.getText().isEmpty())||(inTuteur.getText().isEmpty()));
+                txtcbClassesError.setVisible(false); 
+            }
+        });
+
+        inMatricule.textProperty().addListener((obv,old,newV)->{
+            if(newV.isEmpty()){
+                txtMatError.setVisible(true);
+                smpl.set(true);
+            }else{
+                smpl.set((cbNonClasse.getSelectionModel().isEmpty())||(inNomComplet.getText().isEmpty())||(inTuteur.getText().isEmpty()));
+                txtMatError.setVisible(false); 
+            }
+        });
+
+        inNomComplet.textProperty().addListener((obv,old,newV)->{
+            if(newV.isEmpty()){
+                txtNomError.setVisible(true);
+                smpl.set(true);
+            }else{
+                smpl.set((cbNonClasse.getSelectionModel().isEmpty())||(inMatricule.getText().isEmpty())||(inTuteur.getText().isEmpty()));
+                txtNomError.setVisible(false); 
+            }
+        });
+
+        inTuteur.textProperty().addListener((obv,old,newV)->{
+            if(newV.isEmpty()){
+                txtTuteurError.setVisible(true);
+                smpl.set(true);
+            }else{
+                smpl.set((cbNonClasse.getSelectionModel().isEmpty())||(inMatricule.getText().isEmpty())||(inNomComplet.getText().isEmpty()));
+                txtTuteurError.setVisible(false); 
+            }
+        });
+
+        btnInscrire.disableProperty().bind(smpl);
     }
 
     @FXML
     void handleInRelease(MouseEvent event) {
+        
         blockFields(false);
         releaseFields();
         cbNonClasse.setItems(obClassesAll);
 
         btnInscrire.setText("INSCRIRE");
+        smpl.set(true);
 
     }
 

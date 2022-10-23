@@ -19,7 +19,7 @@
                   <TextField fx:id="inNci" layoutX="14.0" layoutY="35.0" />
                   <TextField fx:id="inNom" layoutX="172.0" layoutY="35.0" />
                   <TextField fx:id="inGrade" layoutX="334.0" layoutY="35.0" />
-                  <Button layoutX="497.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleAjouterProf" prefHeight="25.0" prefWidth="91.0" text="Ajouter" />
+                  <Button fx:id="btnAjouter" layoutX="497.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleAjouterProf" prefHeight="25.0" prefWidth="91.0" text="Ajouter" />
                   <Text layoutX="72.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NCI">
                      <font>
                         <Font size="20.0" />
@@ -35,6 +35,9 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
+                  <Text fx:id="txtErrorNci" layoutX="18.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="veuillez remplir ce champs" />
+                  <Text fx:id="txtErrorNom" layoutX="177.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="veuillez remplir ce champs" />
+                  <Text fx:id="txtErrorGrade" layoutX="339.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="veuillez remplir ce champs" />
                </children>
             </AnchorPane>
          </top>
@@ -66,9 +69,11 @@
          <bottom>
             <AnchorPane prefHeight="103.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="448.0" layoutY="39.0" mnemonicParsing="false" onAction="#handleAffecterClasse" prefHeight="25.0" prefWidth="129.0" text="affecter cette classe" />
+                  <Button fx:id="btnAffecter" layoutX="448.0" layoutY="39.0" mnemonicParsing="false" onAction="#handleAffecterClasse" prefHeight="25.0" prefWidth="129.0" text="affecter cette classe" />
                   <TextField fx:id="inSelectedProf" editable="false" layoutX="31.0" layoutY="39.0" />
                   <ComboBox fx:id="cbNon" layoutX="225.0" layoutY="39.0" prefWidth="150.0" promptText="classes non affectées" />
+                  <Text fx:id="txtErrorClasse" layoutX="206.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="veuillez choisir une classe a affecter" />
+                  <Text fx:id="txtErrorProf" layoutX="31.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="veuillez selectionner un professeur sur le tableau" wrappingWidth="140.916015625" />
                </children></AnchorPane>
          </bottom>
       </BorderPane>

@@ -31,7 +31,7 @@ public class ConnexionController implements Initializable {
     @FXML
     private Text txtPwdError;
 
-    SimpleBooleanProperty smpl=new SimpleBooleanProperty(false);
+    SimpleBooleanProperty smpl=new SimpleBooleanProperty(true);
 
     public  static  User user;
 
@@ -44,6 +44,7 @@ public class ConnexionController implements Initializable {
         inLogin.textProperty().addListener((obv,old,newV)->{
             if(newV.isEmpty()){
                 txtLoginError.setVisible(true);
+                smpl.set(true);
             }else{
                   smpl.set(inPwd.getText().isEmpty());
                   txtLoginError.setVisible(false); 
@@ -53,18 +54,19 @@ public class ConnexionController implements Initializable {
         inPwd.textProperty().addListener((obv,old,newV)->{
             if(newV.isEmpty()){
                 txtPwdError.setVisible(true);
+                smpl.set(true);
             }else{
                   smpl.set(inLogin.getText().isEmpty());
                   txtPwdError.setVisible(false); 
             }
         });
-        
            btnSeConnecter.disableProperty().bind(smpl);
     }
 
     public void handleAnnuler(){
-        inLogin.setText("");
-        inPwd.setText("");
+        inLogin.clear();
+        inPwd.clear();
+        smpl.set(true);
     }
 
     public void handleConnexion() throws IOException{

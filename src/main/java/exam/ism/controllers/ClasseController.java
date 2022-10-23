@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import exam.ism.core.Fabrique;
 import exam.ism.entities.Classe;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -38,6 +39,8 @@ public class ClasseController implements Initializable {
 
     private ObservableList obClasses= FXCollections.observableList(Fabrique.giveMe().ListerClasses());
 
+    SimpleBooleanProperty smpl=new SimpleBooleanProperty(true);
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         txtError.setVisible(false);
@@ -48,13 +51,15 @@ public class ClasseController implements Initializable {
         tblvClasse.setItems(obClasses);
         inLibelle.textProperty().addListener((obv,old,newV)->{
             if(newV.isEmpty()){
+                smpl.set(true);
                 txtError.setVisible(true);
-                btnCreer.setDisable(true);
             }else{
-                btnCreer.setDisable(false);
+                smpl.set(false);
                 txtError.setVisible(false); 
             }
         });
+
+        btnCreer.disableProperty().bind(smpl);
     }
 
     public void handleCreerClasse() {
